@@ -1,40 +1,48 @@
 <?php
 /**
- * Author: Christian Forbes
+ * Author: Miles Hegeduis
  * Date: 10/10/2023
  * File Name: hourly_employee.class.php
- * Description: defines HourlyWorker class.
+ * Description: File defining the HourlyEmployee class.
  */
 
 class HourlyEmployee extends Employee {
-    //class private attributes
-    private $wage, $hours;
+    private $wage;
+    private $hours;
 
-    public function __construct($name, $title, $years, $salary, $wage, $hours)
-    {
-        parent::__construct($name, $title, $years, $salary);
-        $this->wage=$wage;
-        $this->hours=$hours;
-    }
+    //constructor.
+    public function __construct(Person $person, $ssn, $wage, $hours) {
+        parent::__construct($person, $ssn);
+        $this->hours = $hours;
+        $this->wage = $wage;
+    }//end constructor.
 
-    //getter for wage
-    public function getWage() {
-        return $this->wage;
-    }
-
-    //getter for hours
+    //getters and setters.
     public function getHours() {
         return $this->hours;
     }
-
-    //implement abstract methods from Employee
+    public function setHours($hours) {
+        $this->hours = $hours;
+    }
+    public function getWage() {
+        return $this->wage;
+    }
+    public function setWage($wage) {
+        $this->wage = $wage;
+    }
     public function getPaymentAmount()
     {
-        // TODO: Implement getPaymentAmount() method.
+       return $this->getHours() * $this->getWage();
     }
+    //toString method.
+    public function toString() {
+        $hourlyDetails = "*****************************************************<br><b>Hourly Employee</b><br>";
+        $hourlyDetails .= "Name: " . $this->getPerson()->getFirstName() . ' ' . $this->getPerson()->getLastName() . "<br>";
+        $hourlyDetails .= "SSN: " . $this->getSSN() . "<br>";
+        $hourlyDetails .= "Wage: \$" . $this->getWage() . "<br>";
+        $hourlyDetails .= "Hours: " . $this->getHours() . "<br>";
+        $hourlyDetails .= "Payment Amount: \$" . $this->getPaymentAmount() . "<br>";
 
-    public function toString()
-    {
-        // TODO: Implement toString() method.
+        return $hourlyDetails;
     }
 }

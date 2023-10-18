@@ -1,68 +1,91 @@
 <?php
 /**
- * Author: Christian Forbes
+ * Author: Miles Hegeduis
  * Date: 10/10/2023
  * File Name: invoice.class.php
- * Description: define Invoice class. This class includes get methods for all private attributes, invoice count, to string.
+ * Description: Description of Invoice class.
  */
 
-class Invoice implements Payable {
-    //private attributes
-    private $part_number, $part_description, $quantity, $price_per_item;
+//require_once
+require_once 'payable.class.php';
 
-    //static attribute for invoice count
-    static private $invoice_count = 0;
+class Invoice implements Payable {//start of class.
 
-    //class constructor using all attributes
-    public function __construct($part_number, $part_description, $quantity, $price_per_item, $invoice_count)
-    {
+    //private data variables.
+    private $part_number;
+    private $part_description;
+    private $integer;
+    private $price_per_item;
+    private static $invoice_count = 0;
+
+    //constructor.
+    public function __construct($part_number, $part_description, $integer, $price_per_item) {
         $this->part_number = $part_number;
         $this->part_description = $part_description;
-        $this->quantity = $quantity;
+        $this->integer = $integer;
         $this->price_per_item = $price_per_item;
-        $this->invoice_count = $invoice_count;
-        //increment invoice count each time a new object is made
         self::$invoice_count++;
-    }
+    }//end of construct.
 
-    //getter for price per item
+    //getters and setters
     public function getPartNumber()
     {
         return $this->part_number;
     }
 
-    //getter for price per item
+    public function setPartNumber($part_number): void
+    {
+        $this->part_number = $part_number;
+    }
+
     public function getPartDescription()
     {
         return $this->part_description;
     }
 
-    //getter for price per item
-    public function getQuantity()
+    public function setPartDescription($part_description): void
     {
-        return $this->quantity;
+        $this->part_description = $part_description;
     }
 
-    //getter for price per item
+    public function getInteger()
+    {
+        return $this->integer;
+    }
+
+    public function setInteger($integer): void
+    {
+        $this->integer = $integer;
+    }
     public function getPricePerItem()
     {
         return $this->price_per_item;
     }
 
-    //get incremented invoice count from self
-    public function getInvoiceCount() {
+    public static function getInvoiceCount() {
         return self::$invoice_count;
     }
 
-    //implement methods from Payable interface
+    public function setPricePerItem($price_per_item): void
+    {
+        $this->price_per_item = $price_per_item;
+    }
+
     public function getPaymentAmount()
     {
-        // TODO: Implement getPaymentAmount() method.
+        return $this->getInteger() * $this->getPricePerItem();
     }
 
-    public function toString()
-    {
-        // TODO: Implement toString() method.
-    }
+    //toString method.
+    public function toString() {
 
-}
+        $invoiceDetails = "*****************************************************<br><b>Invoice</b><br>";
+        $invoiceDetails .= "Part Number: " . $this->getPartNumber() . "<br>";
+        $invoiceDetails .= "Part Description: " . $this->getPartDescription() . "<br>";
+        $invoiceDetails .= "Quantity : " . $this->getInteger() . "<br>";
+        $invoiceDetails .= "Price per Item: \$" . $this->getPricePerItem() . "<br>";
+        $invoiceDetails .= "Payment: \$" . $this->getPaymentAmount() . "<br>";
+
+        return $invoiceDetails;
+    }
+}//end of class.

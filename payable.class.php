@@ -5,3 +5,9 @@
  * File Name: payable.class.php
  * Description:
  */
+
+interface Payable {
+    public function getPaymentAmount();
+
+    public function toString();
+}
