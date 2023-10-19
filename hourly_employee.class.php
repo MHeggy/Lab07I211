@@ -36,7 +36,7 @@ class HourlyEmployee extends Employee {
     }
     //toString method.
     public function toString() {
-        $hourlyDetails = "*****************************************************<br><b>Hourly Employee</b><br>";
+        $hourlyDetails = "<b>Hourly Employee</b><br>";
         $hourlyDetails .= "Name: " . $this->getPerson()->getFirstName() . ' ' . $this->getPerson()->getLastName() . "<br>";
         $hourlyDetails .= "SSN: " . $this->getSSN() . "<br>";
         $hourlyDetails .= "Wage: \$" . $this->getWage() . "<br>";

@@ -27,7 +27,7 @@ class SalariedEmployee extends Employee {
     }
     //toString()
     public function toString() {
-        $salariedDetails = "*****************************************************<br><b>Salaried Employee</b><br>";
+        $salariedDetails = "<b>Salaried Employee</b><br>";
         $salariedDetails .= "Name: " . $this->getPerson()->getFirstName() . ' ' . $this->getPerson()->getLastName() . "<br>";
         $salariedDetails .= "SSN: " . $this->getSSN() . "<br>";
         $salariedDetails .= "Weekly Salary: \$" . $this->getWeeklySalary() . "<br>";

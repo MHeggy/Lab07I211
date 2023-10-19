@@ -79,9 +79,8 @@ class Invoice implements Payable {//start of class.
     //toString method.
     public function toString() {
 
-        $invoiceDetails = "*****************************************************<br><b>Invoice</b><br>";
-        $invoiceDetails .= "Part Number: " . $this->getPartNumber() . "<br>";
-        $invoiceDetails .= "Part Description: " . $this->getPartDescription() . "<br>";
+        $invoiceDetails = "<b>Invoice</b><br>";
+        $invoiceDetails .= "Part Number: " . $this->getPartNumber() . " (" . $this->getPartDescription() . ") . <br>";
         $invoiceDetails .= "Quantity : " . $this->getInteger() . "<br>";
         $invoiceDetails .= "Price per Item: \$" . $this->getPricePerItem() . "<br>";
         $invoiceDetails .= "Payment: \$" . $this->getPaymentAmount() . "<br>";

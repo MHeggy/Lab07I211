@@ -39,7 +39,7 @@ class CommissionEmployee extends Employee {//start of class.
     public function toString() {
         $employeeDetails = '';
         if (get_called_class() === 'CommissionEmployee') {
-            $employeeDetails = "*****************************************************<br><b>Commission Employee:</b><br>";
+            $employeeDetails = "<b>Commission Employee:</b><br>";
         }
         $employeeDetails .= "Name: " . $this->getPerson()->getFirstName() . ' ' . $this->getPerson()->getLastName() . "<br>";
         $employeeDetails .= "SSN: " . $this->getSSN() . "<br>";
